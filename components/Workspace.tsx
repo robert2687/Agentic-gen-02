@@ -41,14 +41,14 @@ const Workspace: React.FC = () => {
     };
     
     return (
-        <div className="flex flex-col h-screen bg-background-dark text-text-dark font-sans">
+        <div className="flex flex-col h-screen bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans">
             <Header />
             <main className={`flex-grow grid grid-cols-1 md:grid-cols-[22rem_1fr] lg:grid-cols-[22rem_1fr_1fr] overflow-hidden transition-all duration-300 ${isZenMode ? 'lg:grid-cols-[22rem_1fr_0]':''}`}>
                 {/* Left Panel */}
-                <aside className={`flex flex-col p-4 gap-4 border-r border-border-dark overflow-y-auto ${isZenMode ? 'hidden lg:flex' : 'flex'}`}>
-                     <div className="bg-surface-dark rounded-lg p-4 flex flex-col gap-4">
-                        <h2 className="font-bold text-lg text-text-dark">{projectName}</h2>
-                        <div className="w-full h-24 p-2 bg-background-dark rounded-md border border-border-dark text-sm overflow-y-auto whitespace-pre-wrap text-secondary-dark">
+                <aside className={`flex flex-col p-4 gap-4 border-r border-border-light dark:border-border-dark overflow-y-auto ${isZenMode ? 'hidden lg:flex' : 'flex'}`}>
+                     <div className="bg-surface-light dark:bg-surface-dark rounded-lg p-4 flex flex-col gap-4 border border-border-light dark:border-border-dark">
+                        <h2 className="font-bold text-lg text-text-light dark:text-text-dark">{projectName}</h2>
+                        <div className="w-full h-24 p-2 bg-background-light dark:bg-background-dark rounded-md border border-border-light dark:border-border-dark text-sm overflow-y-auto whitespace-pre-wrap text-text-secondary-light dark:text-text-secondary-dark">
                             {projectGoal}
                         </div>
                         <div className="flex gap-2">
@@ -63,7 +63,7 @@ const Workspace: React.FC = () => {
                         </div>
                     </div>
                     <div>
-                        <h3 className="text-secondary-dark font-semibold px-2 mb-2">AGENTS</h3>
+                        <h3 className="text-text-secondary-light dark:text-text-secondary-dark font-semibold px-2 mb-2">AGENTS</h3>
                         <div className="flex flex-col gap-2">
                             {agents.map(agent => (
                                 <AgentCard 

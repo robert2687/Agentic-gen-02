@@ -17,13 +17,13 @@ const Home: React.FC = () => {
           <div className="flex justify-between items-center max-w-5xl mx-auto">
              <h1 className="text-xl font-bold text-primary">Agentic AI</h1>
             <div className="flex items-center space-x-2">
-              <button aria-label="Settings" onClick={handleShowSettings} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10">
-                <span className="material-symbols-outlined text-text-light dark:text-text-dark">
+              <button aria-label="Settings" onClick={handleShowSettings} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-secondary-light dark:text-text-secondary-dark">
+                <span className="material-symbols-outlined">
                   settings
                 </span>
               </button>
-               <button aria-label="Sign Out" onClick={signOut} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10">
-                <span className="material-symbols-outlined text-text-light dark:text-text-dark">
+               <button aria-label="Sign Out" onClick={signOut} className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-text-secondary-light dark:text-text-secondary-dark">
+                <span className="material-symbols-outlined">
                   logout
                 </span>
               </button>
@@ -32,11 +32,11 @@ const Home: React.FC = () => {
         </header>
         <main className="flex-grow p-4 sm:p-6 space-y-8 max-w-5xl mx-auto w-full">
           <section className="text-center py-12">
-            <h2 className="text-4xl font-bold tracking-tight">Welcome Back</h2>
-            <p className="text-secondary-light dark:text-secondary-dark mt-2 text-lg">Ready to build your next big idea?</p>
+            <h2 className="text-4xl font-bold tracking-tight text-text-light dark:text-text-dark">Welcome Back</h2>
+            <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2 text-lg">Ready to build your next big idea?</p>
              <button
               onClick={handleStartNewProject}
-              className="mt-8 bg-primary text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-primary/30 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-all flex items-center justify-center space-x-2 mx-auto"
+              className="mt-8 bg-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-primary/30 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-all flex items-center justify-center space-x-2 mx-auto"
             >
               <span className="material-symbols-outlined">add_circle</span>
               <span>Start New Project</span>
@@ -44,9 +44,9 @@ const Home: React.FC = () => {
           </section>
          
           <section>
-             <h3 className="text-lg font-semibold mb-4">Recent Projects</h3>
-             <div className="text-center py-12 border-2 border-dashed border-border-light dark:border-border-dark rounded-xl">
-                <p className="text-secondary-light dark:text-secondary-dark">You have no recent projects.</p>
+             <h3 className="text-lg font-semibold mb-4 text-text-light dark:text-text-dark">Recent Projects</h3>
+             <div className="text-center py-12 border-2 border-dashed border-border-light dark:border-border-dark rounded-xl bg-surface-light dark:bg-surface-dark/40">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark">You have no recent projects.</p>
              </div>
           </section>
 

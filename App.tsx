@@ -7,28 +7,27 @@ import CreateProject from './components/CreateProject';
 import Workspace from './components/Workspace';
 import Settings from './components/Settings';
 import Appearance from './components/Appearance';
+import Billing from './components/Billing';
+import UpgradePlan from './components/UpgradePlan';
 
 const App: React.FC = () => {
-  const { view, isSignedIn, isDarkMode, accentColor, error, setError } = useAppStore(state => ({
+  const { view, isSignedIn, accentColor, error, setError, isDarkMode } = useAppStore(state => ({
     view: state.view,
     isSignedIn: state.isSignedIn,
-    isDarkMode: state.isDarkMode,
     accentColor: state.accentColor,
     error: state.error,
     setError: state.setError,
+    isDarkMode: state.isDarkMode,
   }));
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  useEffect(() => {
     document.documentElement.style.setProperty('--color-primary', accentColor);
-  }, [accentColor]);
+    if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+  }, [accentColor, isDarkMode]);
 
   if (!isSignedIn) {
     return <SignIn />;
@@ -46,6 +45,10 @@ const App: React.FC = () => {
         return <Settings />;
       case 'appearance':
         return <Appearance />;
+      case 'billing':
+        return <Billing />;
+      case 'upgradePlan':
+        return <UpgradePlan />;
       default:
         return <Home />;
     }
@@ -55,12 +58,12 @@ const App: React.FC = () => {
     <>
       {renderView()}
       {error && (
-        <div className="fixed bottom-4 right-4 bg-red-800 text-white p-4 rounded-lg shadow-lg z-50 max-w-sm">
-          <div className="flex justify-between items-center mb-2">
-            <p className="font-bold">An Error Occurred</p>
-            <button onClick={() => setError(null)} className="text-xl leading-none">&times;</button>
+        <div className="fixed bottom-4 right-4 bg-red-500 text-white p-4 rounded-xl shadow-lg z-50 max-w-sm border border-red-600 dark:border-red-400">
+          <div className="flex justify-between items-start mb-2">
+            <p className="font-bold text-base">An Error Occurred</p>
+            <button onClick={() => setError(null)} className="text-2xl leading-none hover:opacity-80 transition-opacity -mt-2 -mr-1">&times;</button>
           </div>
-          <p className="text-sm">{error}</p>
+          <p className="text-sm font-light">{error}</p>
         </div>
       )}
     </>

@@ -1,30 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppStore } from '../store';
 
 const ACCENT_COLORS = [
-    '#007AFF',
-    '#34C759',
-    '#FF9500',
-    '#FF3B30',
-    '#AF52DE',
-    '#5856D6',
+    '#13a4ec', // Primary Blue
+    '#9013FE', // Secondary Purple
+    '#39FF14', // Neon Green
+    '#FF073A', // Neon Red
+    '#F600FF', // Neon Pink
+    '#FFFF00', // Electric Yellow
 ];
 
 const Appearance: React.FC = () => {
     const {
-        isDarkMode,
-        toggleTheme,
         accentColor,
         setAccentColor,
         setView,
     } = useAppStore();
 
-    const [fontSizeValue, setFontSizeValue] = useState(50);
+    const defaultAccentColor = '#13a4ec';
 
     const handleReset = () => {
-        if (!isDarkMode) toggleTheme();
-        setAccentColor('#007AFF');
-        setFontSizeValue(50);
+        setAccentColor(defaultAccentColor);
     };
 
     return (
@@ -40,47 +36,31 @@ const Appearance: React.FC = () => {
                 <main className="flex flex-col gap-4">
                     {/* Preview Section */}
                     <div>
-                        <h2 className="text-secondary-light dark:text-secondary-dark text-sm font-medium uppercase tracking-wider px-4 pb-2 pt-4">Preview</h2>
+                        <h2 className="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium uppercase tracking-wider px-4 pb-2 pt-4">Preview</h2>
                         <div className="px-4">
-                            <div className="flex flex-col items-stretch justify-start rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm">
+                            <div className="flex flex-col items-stretch justify-start rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-border-light dark:border-border-dark">
                                 <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-xl" style={{ backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-cKRbzAWyiaFv3h9PPWH0ERmrgya5u0Majy1HMUOfAwlPlV2094ugz21Kf3YLp62wXZNB6tH75xST_vGFuNDm9VE82ceqkvy7jaPRT91KCNEGvOEsnn79mbdk7qzp88mQIw5G13Ys1ROzUwDSC-9EhnQv_rZ3j_BbIQA2aEd-J17MTuQadRfTxeidY8OUYWSJOz7KcqNL53DmLmX9nuMDZ99Xz_xS67vZAXs2wl9sDblxQoICd8DeBTu7Pf6oSyeFxUFJ8Sy2YX0")` }}></div>
                                 <div className="flex w-full grow flex-col items-stretch justify-center gap-2 p-4">
                                     <p className="text-lg font-bold text-primary">Project Name</p>
-                                    <p className="text-sm text-secondary-light dark:text-secondary-dark">This is how your app will look. Updated in real-time.</p>
+                                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">This is how your app will look. Updated in real-time.</p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Theme Section */}
-                    <div>
-                        <h2 className="text-secondary-light dark:text-secondary-dark text-sm font-medium uppercase tracking-wider px-4 pb-2 pt-4">Theme</h2>
-                        <div className="px-4">
-                            <div className="flex h-12 flex-1 items-center justify-center rounded-lg bg-surface-light dark:bg-surface-dark p-1">
-                                <label className="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 text-secondary-light dark:text-secondary-dark text-sm font-medium has-[:checked]:bg-background-light dark:has-[:checked]:bg-background-dark has-[:checked]:text-text-light dark:has-[:checked]:text-text-dark has-[:checked]:shadow-sm">
-                                    <span className="truncate">Light</span>
-                                    <input className="invisible w-0" name="theme-selector" type="radio" value="Light" checked={!isDarkMode} onChange={toggleTheme} />
-                                </label>
-                                <label className="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 text-secondary-light dark:text-secondary-dark text-sm font-medium has-[:checked]:bg-background-light dark:has-[:checked]:bg-background-dark has-[:checked]:text-text-light dark:has-[:checked]:text-text-dark has-[:checked]:shadow-sm">
-                                    <span className="truncate">Dark</span>
-                                    <input className="invisible w-0" name="theme-selector" type="radio" value="Dark" checked={isDarkMode} onChange={toggleTheme}/>
-                                </label>
                             </div>
                         </div>
                     </div>
                     {/* Accent Color Section */}
                     <div>
-                        <h2 className="text-secondary-light dark:text-secondary-dark text-sm font-medium uppercase tracking-wider px-4 pb-2 pt-4">Accent Color</h2>
+                        <h2 className="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium uppercase tracking-wider px-4 pb-2 pt-4">Accent Color</h2>
                         <div className="flex gap-4 px-4 overflow-x-auto py-2">
                            {ACCENT_COLORS.map(color => (
                                 <button 
                                     key={color} 
                                     onClick={() => setAccentColor(color)}
-                                    className={`relative size-10 shrink-0 rounded-full transition-all ${accentColor.toUpperCase() === color.toUpperCase() ? 'ring-2 ring-offset-2 ring-primary dark:ring-offset-background-dark' : ''}`} 
+                                    className={`relative size-10 shrink-0 rounded-full transition-all ${accentColor.toUpperCase() === color.toUpperCase() ? 'ring-2 ring-offset-2 ring-primary ring-offset-background-light dark:ring-offset-background-dark' : ''}`} 
                                     style={{ backgroundColor: color }}
                                     aria-label={`Set accent color to ${color}`}
                                 >
                                     {accentColor.toUpperCase() === color.toUpperCase() && (
-                                        <span className="absolute inset-0 flex items-center justify-center text-white">
+                                        <span className="absolute inset-0 flex items-center justify-center text-white dark:text-background-dark">
                                             <span className="material-symbols-outlined text-xl">check</span>
                                         </span>
                                     )}
@@ -88,27 +68,7 @@ const Appearance: React.FC = () => {
                            ))}
                         </div>
                     </div>
-                    {/* Font Size Section */}
-                    <div>
-                        <h2 className="text-secondary-light dark:text-secondary-dark text-sm font-medium uppercase tracking-wider px-4 pb-2 pt-4">Font Size</h2>
-                        <div className="px-4 py-2">
-                            <div className="flex flex-col gap-3">
-                                <input 
-                                    className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-surface-light dark:bg-surface-dark [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary" 
-                                    max="100" 
-                                    min="0" 
-                                    type="range" 
-                                    value={fontSizeValue} 
-                                    onChange={(e) => setFontSizeValue(Number(e.target.value))}
-                                />
-                                <div className="flex justify-between text-xs text-secondary-light dark:text-secondary-dark">
-                                    <span>Small</span>
-                                    <span>Default</span>
-                                    <span>Large</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                     {/* Reset Button Section */}
                     <div className="px-4 pt-8 pb-12">
                         <button onClick={handleReset} className="w-full text-center text-sm font-medium text-primary">Reset to Default</button>

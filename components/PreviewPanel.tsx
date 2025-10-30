@@ -10,12 +10,12 @@ interface PreviewPanelProps {
 
 const PreviewPanel: React.FC<PreviewPanelProps> = ({ code, isZenMode, onToggleZenMode }) => {
   return (
-    <div className="flex flex-col h-full bg-surface-dark rounded-lg">
-      <header className="flex items-center justify-between p-3 border-b border-border-dark flex-shrink-0">
-        <h2 className="font-bold text-base text-text-dark">Live Application Preview</h2>
+    <div className="flex flex-col h-full bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark">
+      <header className="flex items-center justify-between p-3 border-b border-border-light dark:border-border-dark flex-shrink-0">
+        <h2 className="font-bold text-base text-text-light dark:text-text-dark">Live Application Preview</h2>
         <button
           onClick={onToggleZenMode}
-          className="text-secondary-dark hover:text-white transition-colors rounded-full p-1.5 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="text-text-secondary-light dark:text-text-secondary-dark hover:text-text-light dark:hover:text-white transition-colors rounded-full p-1.5 focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label={isZenMode ? "Exit Zen Mode" : "Enter Zen Mode"}
         >
           {isZenMode ? <ZenOffIcon className="w-5 h-5" /> : <ZenOnIcon className="w-5 h-5" />}

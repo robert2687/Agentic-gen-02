@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 import type { Agent } from '../types';
 
@@ -31,10 +30,13 @@ Begin your response immediately without any introductory phrases like "Certainly
 const mockResponses: Record<string, string[]> = {
   Planner: ["Generating project plan...", "Defining user stories...", "Finalizing tech stack... Done."],
   Architect: ["Designing database schema...", "Creating API contracts...", "Establishing security model... Done."],
+  'Visual Designer': ["Creating wireframes...", "Defining color palette and typography...", "Finalizing UI spec... Done."],
   Coder: ["Writing React components...", "Implementing backend logic...", "Adding unit tests... Done."],
   Reviewer: ["Auditing code for security vulnerabilities...", "Checking for performance bottlenecks...", "Suggesting improvements... Done."],
+  'Patcher': ["Applying security patches...", "Refactoring code based on review...", "Updating changelog... Done."],
   Deployer: ["Writing deployment script...", "Configuring CI/CD pipeline...", "Documenting steps... Done."],
 };
+
 
 const runMockAgentStream = async (agent: Agent, onChunk: (chunk: string) => void): Promise<string> => {
     let fullOutput = "";

@@ -1,4 +1,3 @@
-
 export enum AgentStatus {
   PENDING = 'pending',
   RUNNING = 'running',
@@ -6,7 +5,7 @@ export enum AgentStatus {
   ERROR = 'error',
 }
 
-export type AgentName = 'Planner' | 'Architect' | 'Coder' | 'Reviewer' | 'Deployer';
+export type AgentName = 'Planner' | 'Architect' | 'Visual Designer' | 'Coder' | 'Reviewer' | 'Patcher' | 'Deployer';
 
 export interface Agent {
   id: number;

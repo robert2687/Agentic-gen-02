@@ -19,7 +19,7 @@ const AgentDetailView: React.FC<AgentDetailViewProps> = ({ agent }) => {
   
   if (!agent) {
     return (
-       <div className="flex items-center justify-center h-full bg-surface-dark text-secondary-dark">
+       <div className="flex items-center justify-center h-full bg-surface-light dark:bg-surface-dark text-text-secondary-light dark:text-text-secondary-dark rounded-lg border border-border-light dark:border-border-dark">
           <p>Select an agent to see details.</p>
         </div>
     )
@@ -40,13 +40,13 @@ const AgentDetailView: React.FC<AgentDetailViewProps> = ({ agent }) => {
 
       case AgentStatus.COMPLETED:
         if (!agent.output) {
-          return <p className="text-secondary-dark">Agent completed its task without generating any output.</p>;
+          return <p className="text-text-secondary-light dark:text-text-secondary-dark">Agent completed its task without generating any output.</p>;
         }
         return <MarkdownRenderer content={agent.output} />;
 
       case AgentStatus.ERROR:
         return (
-          <div className="text-red-400 whitespace-pre-wrap">
+          <div className="text-red-500 whitespace-pre-wrap">
             <p className="font-bold">An error occurred:</p>
             {agent.output}
           </div>
@@ -58,16 +58,16 @@ const AgentDetailView: React.FC<AgentDetailViewProps> = ({ agent }) => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-surface-dark rounded-lg">
-      <div className="p-4 border-b border-border-dark flex-shrink-0">
+    <div className="flex flex-col h-full bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark">
+      <div className="p-4 border-b border-border-light dark:border-border-dark flex-shrink-0">
         <h2 className="text-xl font-bold text-primary">{agent.name} Agent</h2>
-        <p className="text-sm text-secondary-dark">{agent.role}</p>
+        <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">{agent.role}</p>
       </div>
       
       <div ref={scrollContainerRef} className="flex-grow p-4 overflow-y-auto">
         {agent.status === AgentStatus.PENDING && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-secondary-dark">Waiting for the workflow to start...</p>
+            <p className="text-text-secondary-light dark:text-text-secondary-dark">Waiting for the workflow to start...</p>
           </div>
         )}
 
@@ -75,13 +75,13 @@ const AgentDetailView: React.FC<AgentDetailViewProps> = ({ agent }) => {
           <div className="space-y-6">
             <div>
               <h3 className="text-lg font-semibold text-primary mb-2">Input</h3>
-              <div className="bg-background-dark p-3 rounded-md text-sm text-text-dark whitespace-pre-wrap font-mono max-h-60 overflow-y-auto ring-1 ring-border-dark">
+              <div className="bg-background-light dark:bg-background-dark p-3 rounded-md text-sm text-text-light dark:text-text-dark whitespace-pre-wrap font-mono max-h-60 overflow-y-auto ring-1 ring-border-light dark:ring-border-dark">
                 {agent.input || 'No input received yet.'}
               </div>
             </div>
             <div>
               <h3 className="text-lg font-semibold text-primary mb-2">Output</h3>
-              <div className="bg-background-dark p-4 rounded-md min-h-[200px] ring-1 ring-border-dark">
+              <div className="bg-background-light dark:bg-background-dark p-4 rounded-md min-h-[200px] ring-1 ring-border-light dark:ring-border-dark">
                 {renderOutputContent()}
               </div>
             </div>

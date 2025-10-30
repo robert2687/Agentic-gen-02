@@ -46,7 +46,7 @@ const CreateProject: React.FC = () => {
           <label className="flex flex-col">
             <p className="text-text-light dark:text-text-dark text-base font-medium pb-2">Project Name</p>
             <input 
-              className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark h-12 placeholder:text-secondary-light dark:placeholder:text-secondary-dark px-4 text-base font-normal" 
+              className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark h-12 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark px-4 text-base font-normal" 
               placeholder="e.g., Social Fitness Tracker" 
               value={projectName}
               onChange={(e) => setLocalProjectName(e.target.value)}
@@ -55,7 +55,7 @@ const CreateProject: React.FC = () => {
           <label className="flex flex-col">
             <p className="text-text-light dark:text-text-dark text-base font-medium pb-2">What should your app do?</p>
             <textarea 
-              className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark min-h-36 placeholder:text-secondary-light dark:placeholder:text-secondary-dark p-4 text-base font-normal" 
+              className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark min-h-36 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark p-4 text-base font-normal" 
               placeholder="Describe your app in detail. For example: 'An app that tracks daily workouts, allows users to add friends, and share their progress on a social feed...'"
               value={description}
               onChange={(e) => setDescription(e.target.value)}

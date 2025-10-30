@@ -6,7 +6,7 @@ const renderParagraphContent = (text: string) => {
   const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*)/g);
   return parts.map((part, i) => {
     if (part.startsWith('`') && part.endsWith('`')) {
-      return <code key={i} className="bg-border-dark text-amber-400 rounded px-1.5 py-1 text-sm font-semibold">{part.slice(1, -1)}</code>;
+      return <code key={i} className="bg-gray-200 dark:bg-border-dark text-primary rounded px-1.5 py-1 text-sm font-semibold">{part.slice(1, -1)}</code>;
     }
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={i}>{part.slice(2, -2)}</strong>;
@@ -28,9 +28,9 @@ const NonCodeRenderer: React.FC<{ content: string }> = ({ content }) => {
         if (!trimmedPara) return null;
         
         // Headings
-        if (trimmedPara.startsWith('# ')) return <h1 key={i} className="text-2xl font-bold mt-6 mb-3 text-text-dark border-b border-border-dark pb-2">{renderParagraphContent(trimmedPara.substring(2))}</h1>;
-        if (trimmedPara.startsWith('## ')) return <h2 key={i} className="text-xl font-bold mt-5 mb-2 text-text-dark border-b border-border-dark pb-1">{renderParagraphContent(trimmedPara.substring(3))}</h2>;
-        if (trimmedPara.startsWith('### ')) return <h3 key={i} className="text-lg font-semibold mt-4 mb-2 text-text-dark/90">{renderParagraphContent(trimmedPara.substring(4))}</h3>;
+        if (trimmedPara.startsWith('# ')) return <h1 key={i} className="text-2xl font-bold mt-6 mb-3 text-text-light dark:text-text-dark border-b border-border-light dark:border-border-dark pb-2">{renderParagraphContent(trimmedPara.substring(2))}</h1>;
+        if (trimmedPara.startsWith('## ')) return <h2 key={i} className="text-xl font-bold mt-5 mb-2 text-text-light dark:text-text-dark border-b border-border-light dark:border-border-dark pb-1">{renderParagraphContent(trimmedPara.substring(3))}</h2>;
+        if (trimmedPara.startsWith('### ')) return <h3 key={i} className="text-lg font-semibold mt-4 mb-2 text-text-light/90 dark:text-text-dark/90">{renderParagraphContent(trimmedPara.substring(4))}</h3>;
 
         // Lists
         if (trimmedPara.startsWith('* ') || trimmedPara.startsWith('- ')) {
@@ -74,16 +74,16 @@ const CodeBlock: React.FC<{ code: string; language: string | null }> = ({ code, 
   };
 
   return (
-    <div className="bg-background-dark rounded-md my-4 ring-1 ring-border-dark relative group">
-      <div className="flex justify-between items-center px-4 py-1 bg-surface-dark/50 rounded-t-md text-xs font-sans">
-        <span className="text-secondary-dark capitalize">{language || 'Code'}</span>
+    <div className="bg-background-light dark:bg-background-dark rounded-md my-4 ring-1 ring-border-light dark:ring-border-dark relative group">
+      <div className="flex justify-between items-center px-4 py-1 bg-surface-light dark:bg-surface-dark/50 rounded-t-md text-xs font-sans border-b border-border-light dark:border-border-dark">
+        <span className="text-text-secondary-light dark:text-text-secondary-dark capitalize">{language || 'Code'}</span>
         <button
           onClick={handleCopy}
-          className="text-secondary-dark hover:text-white transition-colors flex items-center gap-1.5 p-1 -mr-1"
+          className="text-text-secondary-light dark:text-text-secondary-dark hover:text-text-light dark:hover:text-white transition-colors flex items-center gap-1.5 p-1 -mr-1"
           aria-label="Copy code to clipboard"
         >
           {isCopied ? (
-            <span className="text-accent-green">Copied!</span>
+            <span className="text-green-600 dark:text-accent-green">Copied!</span>
           ) : (
             <>
               <CopyIcon className="w-3.5 h-3.5" />
@@ -92,7 +92,7 @@ const CodeBlock: React.FC<{ code: string; language: string | null }> = ({ code, 
           )}
         </button>
       </div>
-      <pre className="p-4 text-sm text-text-dark/80 whitespace-pre-wrap font-mono overflow-x-auto">
+      <pre className="p-4 text-sm text-text-light/80 dark:text-text-dark/80 whitespace-pre-wrap font-mono overflow-x-auto">
         <code>{code}</code>
       </pre>
     </div>
@@ -104,7 +104,7 @@ const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
   const parts = content.split(/(```(?:[\s\S]*?)```)/g);
 
   return (
-    <div className="text-text-dark/90">
+    <div className="text-text-light/90 dark:text-text-dark/90">
       {parts.map((part, index) => {
         if (!part) return null;
 

@@ -4,7 +4,7 @@ import { Agent, AgentStatus } from './types';
 import { INITIAL_AGENTS } from './constants';
 import * as geminiService from './services/geminiService';
 
-type View = 'home' | 'createProject' | 'workspace' | 'settings' | 'appearance';
+type View = 'home' | 'createProject' | 'workspace' | 'settings' | 'appearance' | 'billing' | 'upgradePlan';
 
 export interface AppState {
   agents: Agent[];
@@ -14,19 +14,19 @@ export interface AppState {
   error: string | null;
   previewCode: string | null;
   isSignedIn: boolean;
-  isDarkMode: boolean;
   view: View;
   accentColor: string;
+  isDarkMode: boolean;
 
   // Actions
   signIn: () => void;
   signOut: () => void;
-  toggleTheme: () => void;
   setView: (view: View) => void;
   setProjectGoal: (goal: string) => void;
   setProjectName: (name: string) => void;
   setError: (error: string | null) => void;
   setAccentColor: (color: string) => void;
+  toggleDarkMode: () => void;
   
   resetWorkflow: () => void;
   startGeneration: () => Promise<void>;
@@ -46,9 +46,9 @@ export const useAppStore = create<AppState>()(
       error: null,
       previewCode: null,
       isSignedIn: false,
-      isDarkMode: true,
       view: 'home',
-      accentColor: '#007AFF',
+      accentColor: '#13a4ec',
+      isDarkMode: true,
 
       // Actions
       signIn: () => set({ isSignedIn: true, view: 'home' }),
@@ -56,12 +56,12 @@ export const useAppStore = create<AppState>()(
         get().resetWorkflow();
         set({ isSignedIn: false, projectGoal: '', view: 'home' });
       },
-      toggleTheme: () => set(state => ({ isDarkMode: !state.isDarkMode })),
       setView: (view) => set({ view }),
       setProjectGoal: (goal) => set({ projectGoal: goal }),
       setProjectName: (name) => set({ projectName: name }),
       setError: (error) => set({ error }),
       setAccentColor: (color) => set({ accentColor: color }),
+      toggleDarkMode: () => set(state => ({ isDarkMode: !state.isDarkMode })),
 
       resetWorkflow: () => {
         set({
