@@ -89,12 +89,6 @@ export const useAppStore = create<AppState>()(
 
         if (agentIndex >= get().agents.length) {
           // Workflow finished
-          const finalAgents = get().agents;
-          const coderAgent = finalAgents.find(a => a.name === 'Coder');
-          if (coderAgent && coderAgent.output) {
-            const codeMatch = coderAgent.output.match(/```html\n([\s\S]*?)```/);
-            set({ previewCode: codeMatch ? codeMatch[1] : coderAgent.output });
-          }
           set({ isGenerating: false });
           return;
         }
@@ -127,6 +121,14 @@ export const useAppStore = create<AppState>()(
               index === agentIndex ? { ...agent, status: AgentStatus.COMPLETED, output: finalOutput } : agent
             )
           }));
+
+          // Update preview code after Coder or Patcher runs
+          if ((currentAgent.name === 'Coder' || currentAgent.name === 'Patcher') && finalOutput) {
+            const codeMatch = finalOutput.match(/```html\n?([\s\S]*?)```/);
+            if (codeMatch && codeMatch[1]) {
+              set({ previewCode: codeMatch[1] });
+            }
+          }
 
           const nextInput = `As the ${currentAgent.name}, you produced this output:\n\n${finalOutput}`;
           get()._runAgentWorkflow(agentIndex + 1, nextInput);
